@@ -4,6 +4,9 @@ const request=require('request-promise');
 const cheerio=require('cheerio');
 const fs=require('fs');
 const port=process.env.PORT || 3000;
+const currentUrl=process.env.CURRENTURL || "http://localhost:3000/";
+const fromPhone=process.env.FROMPHONE || "whatsapp:+14155238886";
+const toPhone=process.env.TOPHONE  || 'whatsapp:+918219338068';
 app.set('view engine', 'ejs')//Setting the view Engine
 app.use(express.static('public'))//creating a relative path to look for static files
 var url="https://hargharpathshala.in/class-5-december";
@@ -31,13 +34,13 @@ app.get('/',(req,res)=>{(async ()=>{
         var video4=$('iframe')[3].attribs["data-lazy-load"];
         var workSheet4=$('a[class="elementor-button-link elementor-button elementor-size-sm"]')[4].attribs.href;
 
-        const accountSid = "ACb64d455245874ad07deaa3af18fc2fc6";
-        const authToken = "5cc086813591fa005791556694b650c7";
+        const accountSid =process.env.SID || "ACb64d455245874ad07deaa3af18fc2fc6";
+        const authToken =process.env.AUTH || "5cc086813591fa005791556694b650c7";
         const client = require('twilio')(accountSid, authToken);
-
+        
         client.messages
             .create({
-                from: 'whatsapp:+14155238886',
+                from: fromPhone,
                 body: 
                 Subjects1+"\n\n" + 
                 "वीडियो : " + video1 + "\n\n" +
@@ -50,14 +53,17 @@ app.get('/',(req,res)=>{(async ()=>{
                 "कार्यपत्रक :" + workSheet3 +"\n\n\n" +
                 Subjects4+"\n\n" + 
                 "वीडियो : " + video4 + "\n\n" +
-                "कार्यपत्रक :" + workSheet4 +"\n"
+                "कार्यपत्रक :" + workSheet4 +"\n" +"\n\n\n"+currentUrl
                 ,
-                to: 'whatsapp:+918219338068'
-            }).then(() => {    
+                to: toPhone
+            }
+            ).then(() => {    
                 res.render('index')//Load the Index page as Home Page        
             }).catch(err=>{
                 console.log(err.message);
             });
+
+            
     })()
 });
 app.listen(port,()=>{
