@@ -3,6 +3,7 @@ const app=express();
 const request=require('request-promise');
 const cheerio=require('cheerio');
 const fs=require('fs');
+const port=process.env.PORT || 3000;
 app.set('view engine', 'ejs')//Setting the view Engine
 app.use(express.static('public'))//creating a relative path to look for static files
 var url="https://hargharpathshala.in/class-5-december";
@@ -60,6 +61,6 @@ app.get('/',(req,res)=>{(async ()=>{
             });
     })()
 });
-app.listen(3000,()=>{
-    console.log("Listening at port 3000")
+app.listen(port,()=>{
+    console.log("Listening at port "+port)
 })
