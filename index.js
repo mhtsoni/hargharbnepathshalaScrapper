@@ -7,7 +7,7 @@ const port=process.env.PORT || 3000;
 app.set('view engine', 'ejs')//Setting the view Engine
 app.use(express.static('public'))//creating a relative path to look for static files
 var url="https://hargharpathshala.in/class-5-december";
-app.get('/',(req,res)=>{(async ()=>{
+app.get('./',(req,res)=>{(async ()=>{
         const response= await request({
             uri:url,
             headers:{
@@ -15,7 +15,6 @@ app.get('/',(req,res)=>{(async ()=>{
             }
         });
         let $ = cheerio.load(response);
-        var dll='data-lazy-load';
         var Subjects1=$('h3[class="elementor-heading-title elementor-size-default"]')[0].children[0].data;
         var video1=$('iframe')[0].attribs["data-lazy-load"];
         var workSheet1=$('a[class="elementor-button-link elementor-button elementor-size-sm"]')[1].attribs.href;
