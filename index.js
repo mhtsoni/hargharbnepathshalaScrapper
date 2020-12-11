@@ -53,7 +53,7 @@ app.get('/',(req,res)=>{(async ()=>{
                 "कार्यपत्रक :" + workSheet3 +"\n\n\n" +
                 Subjects4+"\n\n" + 
                 "वीडियो : " + video4 + "\n\n" +
-                "कार्यपत्रक :" + workSheet4 +"\n" +"\n\n\n"+currentUrl
+                "कार्यपत्रक :" + workSheet4 +"\n" 
                 ,
                 to: toPhone
             }
