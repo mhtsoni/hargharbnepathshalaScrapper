@@ -5,6 +5,7 @@ const cheerio=require('cheerio');
 const fs=require('fs');
 const port=process.env.PORT || 3000;
 app.set('view engine', 'ejs')//Setting the view Engine
+app.use(express.static('public'))//creating a relative path to look for static files
 var url="https://hargharpathshala.in/class-5-december";
 app.get('/',(req,res)=>{(async ()=>{
         const response= await request({
@@ -31,7 +32,7 @@ app.get('/',(req,res)=>{(async ()=>{
         var workSheet4=$('a[class="elementor-button-link elementor-button elementor-size-sm"]')[4].attribs.href;
 
         const accountSid = "ACb64d455245874ad07deaa3af18fc2fc6";
-        const authToken = "af1b6d635bbf8a5af50b8a6364d9036d";
+        const authToken = "5cc086813591fa005791556694b650c7";
         const client = require('twilio')(accountSid, authToken);
 
         client.messages
