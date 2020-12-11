@@ -34,8 +34,8 @@ app.get('/',(req,res)=>{(async ()=>{
         var video4=$('iframe')[3].attribs["data-lazy-load"];
         var workSheet4=$('a[class="elementor-button-link elementor-button elementor-size-sm"]')[4].attribs.href;
 
-        const accountSid =process.env.SID || "ACb64d455245874ad07deaa3af18fc2fc6";
-        const authToken =process.env.AUTH || "5cc086813591fa005791556694b650c7";
+        const accountSid =process.env.SID || "";
+        const authToken =process.env.AUTH || "";
         const client = require('twilio')(accountSid, authToken);
         
         client.messages
